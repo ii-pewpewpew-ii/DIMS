@@ -1,3 +1,5 @@
-const config = require("./google")
+const googleAuth = require("./google")
+const db = require("./db");
+const JWTDetails = require("./jwt");
 
-module.exports = config
+module.exports = {googleAuth,db,JWTDetails};
