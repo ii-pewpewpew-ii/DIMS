@@ -1,5 +1,9 @@
 import {useState} from 'react';
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 const SignUp=()=>{
+    const navigate=useNavigate();
+
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
     const [username, setUsername] = useState('');
@@ -14,7 +18,21 @@ const SignUp=()=>{
       }
       // API request logic
   
-      
+      axios.post('http://localhost:8080/api/auth/signup',{
+        emailid: email,
+        password,
+        firstname: fname,
+        lastname: lname,
+        username
+      })
+      .then((res)=>{
+        console.log(res)
+        navigate('/login')
+
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
   
     };
   
@@ -97,7 +115,7 @@ const SignUp=()=>{
           <input
             className=" shadow   border rounded py-2 px-3 text-grey-darker mb-4"
             type="password"
-            value={password}
+            value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>

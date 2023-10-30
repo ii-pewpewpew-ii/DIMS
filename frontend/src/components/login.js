@@ -1,6 +1,9 @@
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
+  const navigate=useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,6 +13,19 @@ const Login = () => {
       return;
     }
     // API request logic
+    axios.post('http://localhost:8080/api/auth/user',{
+      emailid: email,
+      password
+    })
+    .then((res)=>{
+      console.log(res)
+      navigate('/gallery')
+
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
   };
 
   return (

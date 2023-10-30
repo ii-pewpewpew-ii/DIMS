@@ -20,7 +20,7 @@ async function signupHandler(req,res) {
         const emailid = req.body.emailid;
         const password = req.body.password;
         const firstname = req.body.firstname;
-        const lastname = (req.body.lastlame === undefined) ? null :  req.body.lastname;
+        const lastname = (req.body.lastname === undefined) ? null :  req.body.lastname;
         const username = req.body.username;
 
         let data = await User.findOne({
