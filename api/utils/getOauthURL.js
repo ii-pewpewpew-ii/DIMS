@@ -1,4 +1,4 @@
-const config = require("../config");
+const config = require("../config/google");
 
 const OAUTH_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 
