@@ -1,4 +1,4 @@
-const config = require("../config/google");
+const {googleAuth} = require("../config");
 
 const OAUTH_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 
@@ -7,14 +7,15 @@ const OAUTH_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth";
     user's google photos.
 */
 
-function getGoogleOAuthURL(){
+function getGoogleOAuthURL(username){
     
     const options = {
-        redirect_uri : config.googleRedirectURL,
-        client_id : config.googleClientId,
+        redirect_uri : googleAuth.googleRedirectURL,
+        client_id : googleAuth.googleClientId,
         access_type : 'offline',
-        response_type : 'code',
-        scope : ["https://www.googleapis.com/auth/photoslibrary"]
+        response_type : 'token',
+        scope : ["https://www.googleapis.com/auth/photoslibrary"],
+        state : username
     }    
     const params = new URLSearchParams(options);
     return `${OAUTH_BASE_URL}?${params.toString()}`;

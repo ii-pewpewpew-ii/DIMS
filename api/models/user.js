@@ -42,6 +42,20 @@ const UserProfile = sequelize.define("user_profile",{
     }
 });
 
+const Authtoken = sequelize.define("authentication", {
+    username : {
+        primaryKey : true,
+        type : Sequelize.TEXT,
+        allowNull : false,
+        unique : true
+    },
+    access_token : {
+        unique : true,
+        type : Sequelize.TEXT,
+        allowNull : false,
+    }
+});
+
 User.hasOne(UserProfile,{
     foreignKey : 'username',
     sourceKey: 'username'
@@ -54,5 +68,6 @@ UserProfile.belongsTo(User,{
 
 module.exports = {
     User,
-    UserProfile
+    UserProfile,
+    Authtoken
 };

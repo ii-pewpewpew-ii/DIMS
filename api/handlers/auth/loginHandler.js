@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
-const sequelize = require("../../utils").dbConnection;
+//const sequelize = require("../../utils").dbConnection;
 const bcrypt = require("bcrypt");
-const User = require("../../models").User;
+const models = require("../../models");
 const JWTDetails = require("../../config").JWTDetails;
-
+const utils = require("../../utils");
 
 /*
     PATH : /api/auth/user
@@ -20,7 +20,7 @@ async function loginHandler(req, res) {
         const password = req.body.password;
 
         if (emailid && password) {
-            let data = await User.findOne({
+            let data = await models.User.findOne({
                 where: {
                     emailid: emailid
                 }
@@ -40,7 +40,7 @@ async function loginHandler(req, res) {
 
                         var token = jwt.sign({ id, username }, JWTDetails.secret, { expiresIn: JWTDetails.expiration });
                         res.set("x-access-token", token);
-                        return res.status(200).send({ message: "Login Successful" });
+                        return res.status(200).send({ message: "Login Successful" ,oAuthUrl : `${utils.googleOAuthURL()}`});
                     }
                     else {
                         return res.status(400).send({ message: "Wrong Credentials" });
