@@ -19,7 +19,7 @@ const Login = () => {
     })
     .then((res)=>{
       console.log(res)
-      navigate('/gallery')
+      // navigate('/gallery')
 
     })
     .catch((err)=>{

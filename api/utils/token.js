@@ -10,7 +10,7 @@ function verifyToken(token){
         return decoded;
     }
     catch(err){
-        console.log(error);
+        console.log(err);
         return null;
     }
 }

@@ -25,6 +25,7 @@ app.get('/',(req,res)=>{
 app.use((req,res,next) => {
 
     const token = req.headers.authorization;
+    console.log("TOKEN AH?",token,req.get("x-access-token"), res.get("x-access-token"),req.body.access_token)
 
     if(!token || token == "Bearer no_token"){
         return res.status(400).send({message : "token required"});
