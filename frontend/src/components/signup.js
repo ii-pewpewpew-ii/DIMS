@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const SignUp=()=>{
     const navigate=useNavigate();
@@ -35,7 +35,9 @@ const SignUp=()=>{
       })
   
     };
-  
+    if(localStorage.getItem('jwttoken') && localStorage.getItem('username')){
+      navigate('/gallery')
+    }
     return (
       <div className="flex flex-col justify-center bg-lavender w-3/5 h-screen leading-8 text-grey text-center py-5 rounded">
         <h1 className="text-3xl font-bold my-5">SignUp  </h1>

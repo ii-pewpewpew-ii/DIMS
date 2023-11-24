@@ -3,9 +3,25 @@ const models = require("../../models");
 const { user } = require("../../config/db");
 
 async function handleSetOauth(req, res) {
+    res.type('.html')
+    res.send(`
+    <html>
+    <body>
+    <script>
+        const url=window.location
+        url.replace('#', '?')
+        console.log(url);
+    </script>
+    </body>
+    </html>
+`)
+}
 
-    const username = req.locals.state;
-    const token = req.body.access_token;
+async function handleOAuthSet(req, res){
+
+
+    const username = req.query.state;
+    const token = req.query.access_token;
     const model = models.Authtoken;
 
     if (!token) {
@@ -31,4 +47,7 @@ async function handleSetOauth(req, res) {
     return res.status(200).send({message : "Access token updated"});
 }
 
-module.exports =  handleSetOauth;
+module.exports = {
+    handleSetOauth,
+    handleOAuthSet
+};

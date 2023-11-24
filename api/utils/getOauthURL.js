@@ -12,7 +12,7 @@ function getGoogleOAuthURL(username){
     const options = {
         redirect_uri : googleAuth.googleRedirectURL,
         client_id : googleAuth.googleClientId,
-        access_type : 'offline',
+        // access_type : 'online',
         response_type : 'token',
         scope : ["https://www.googleapis.com/auth/photoslibrary"],
         state : username
