@@ -40,7 +40,7 @@ async function loginHandler(req, res) {
 
                         var token = jwt.sign({ id, username }, JWTDetails.secret, { expiresIn: JWTDetails.expiration });
                         res.set("x-access-token", token);
-                        return res.status(200).send({ message: "Login Successful" ,oAuthUrl : `${utils.googleOAuthURL()}`});
+                        return res.status(200).send({ message: "Login Successful" ,oAuthUrl : `${utils.googleOAuthURL(username)}`,jwttoken:token, uname: username});
                     }
                     else {
                         return res.status(400).send({ message: "Wrong Credentials" });

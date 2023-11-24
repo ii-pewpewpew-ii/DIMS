@@ -1,8 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate=useNavigate()
   const [navExpanded, setNavExpanded] = useState(false);
-
+  const logoutHandler=()=>{
+    localStorage.removeItem('jwttoken')
+    localStorage.removeItem('username')
+    navigate('/login')
+  }
   const toggleProfile=()=>{
     setNavExpanded(!navExpanded);
   }
@@ -48,6 +54,7 @@ const Navbar = () => {
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-2"
+                    onClick={logoutHandler}
                   >
                     Sign out
                   </button>

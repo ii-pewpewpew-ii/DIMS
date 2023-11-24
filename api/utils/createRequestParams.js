@@ -2,14 +2,14 @@ function createRequestParams(req, res) {
     try {
 
         var filters = {};
-        if (req.contentCategories) {
-            var contentCategories = req.contentCategories;
+        if (req.body.contentCategories) {
+            var contentCategories = req.body.contentCategories;
             filters.contentFilter = {
                 "includedContentCategories": contentCategories
             };
         }
 
-        if (req.dates) {
+        if (req.body.dates) {
 
             /*
                 dates : (List) of Date objects. MAX of 5 dates
@@ -22,11 +22,11 @@ function createRequestParams(req, res) {
             ]
             */
 
-            var dates = req.dates;
+            var dates = req.body.dates;
             filters.dateFilter = {
                 "dates": dates
             };
-        } else if (req.ranges) {
+        } else if (req.body.ranges) {
             /*
                 ranges : (List) of DateRange Objects. Max of 5 ranges
                 [
@@ -46,34 +46,34 @@ function createRequestParams(req, res) {
             */
 
 
-            var ranges = req.ranges;
+            var ranges = req.body.ranges;
             filters.dateFilter = {
                 "ranges": ranges
             }
         }
 
-        if (req.feature) {
+        if (req.body.feature) {
 
             /*
              feature : (List) of feature Enum.
              */
 
-            var feature = req.feature;
+            var feature = req.body.feature;
             filters.featureFilter = {
                 "includedFeatures": feature
             }
         }
-        filters.mediaFilter =  {
+        filters.mediaTypeFilter =  {
             "mediaTypes": [
                 "PHOTO"
             ]
         };
 
-        params = {
-            "filters" : filters
-        };
-        console.log(params);
-        return params;
+        // params = {
+        //     "filters" : filters
+        // };
+        console.log(filters);
+        return filters;
 
     }
     catch (error) {

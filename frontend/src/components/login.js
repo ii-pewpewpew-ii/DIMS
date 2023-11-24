@@ -1,5 +1,5 @@
-import { useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
@@ -19,6 +19,9 @@ const Login = () => {
     })
     .then((res)=>{
       console.log(res)
+      localStorage.setItem('jwttoken',res.data.jwttoken)
+      localStorage.setItem('username',res.data.uname)
+      window.location.href=res.data.oAuthUrl
       // navigate('/gallery')
 
     })
@@ -27,7 +30,11 @@ const Login = () => {
     })
 
   };
-
+  useEffect(()=>{
+    if(localStorage.getItem('jwttoken') && localStorage.getItem('username')){
+        navigate('/gallery')
+    }
+  },[])
   return (
       <div className="flex flex-col justify-center bg-lavender w-3/5 h-screen leading-8 text-grey text-center py-5 rounded">
         <h1 className="text-3xl font-bold my-5">Login</h1>
