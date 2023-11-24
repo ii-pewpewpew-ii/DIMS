@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import bg from '../assets/bg_img.png'
 
 const Login = () => {
   const navigate=useNavigate();
@@ -36,7 +37,8 @@ const Login = () => {
     }
   },[])
   return (
-      <div className="flex flex-col justify-center bg-lavender w-3/5 h-screen leading-8 text-grey text-center py-5 rounded">
+    <div className="flex flex-row bg-skinColor">
+      <div className="flex flex-col justify-center bg-lavender w-6/12 h-screen leading-8 text-grey text-center py-5 rounded">
         <h1 className="text-3xl font-bold my-5">Login</h1>
         <div className="mx-auto w-3/6 flex flex-col justify-center">
             <div className="flex align-start">
@@ -80,6 +82,11 @@ const Login = () => {
           </a>
         </div>
       </div>
+      <div className="mx-auto my-auto">
+        <img className="" src={bg} alt="bg"/>
+      </div>
+    </div>
+      
   );
 };
 

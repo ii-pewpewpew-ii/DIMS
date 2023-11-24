@@ -9,7 +9,8 @@ module.exports = {
         buttonBlue: '#3490dc',
         red: 'red',
         lavender: '#a89edd',
-        grey: '#333333'
+        grey: '#333333',
+        skinColor:'#feefe0'
       },
     },
   },
